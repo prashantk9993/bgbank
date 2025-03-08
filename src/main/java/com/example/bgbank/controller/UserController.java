@@ -7,7 +7,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -51,23 +53,13 @@ public class UserController {
     public String registerUser(User user) {
         System.out.println("Registering user.........");
         userService.saveUser(user);
-        return "redirect:/welcome";
+        return "redirect:/mfa/"+user.getCustRegNumber().toLowerCase();
     }
 
-    // Login page
-    @GetMapping("/login")
-    public String showLoginPage() {
-        System.out.println("Opening Login page.........");
-        return "login";
-    }
 
     @PostMapping("/login2")
     public String checkUserLogin(User user) {
         System.out.println("user.getUserName()........"+user.getUserName());
-        System.out.println("user.getPassword()........"+user.getPassword());
-
-        System.out.println("Check user credentials.........");
-
         User user1 = userService.findUser(user.getUserName(),user.getPassword());
 
         if(user1!=null){
@@ -87,6 +79,15 @@ public class UserController {
     public String showWelcomeage() {
         System.out.println("Opening welcome page.........");
         return "welcome";
+    }
+
+
+    @GetMapping("/mfa/{id}")
+    public ModelAndView showMfaPage(@PathVariable("id") String id) {
+        System.out.println("Opening MFA page for User ID: " + id);
+        ModelAndView modelAndView = new ModelAndView("mfa");
+        modelAndView.addObject("UserId", id);
+        return modelAndView;
     }
 
 }
