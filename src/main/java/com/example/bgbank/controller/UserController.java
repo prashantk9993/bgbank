@@ -89,4 +89,11 @@ public class UserController {
         return "welcome";
     }
 
+
+    @GetMapping("/loginNew")
+    public String showNewLoginPage() {
+        System.out.println("Opening Login page.........");
+        return "loginNew";
+    }
+
 }

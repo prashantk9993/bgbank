@@ -2,39 +2,68 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Register</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
-<body>
+<body style="place-items: center;">
 <h2>Register</h2>
-<form action="/register2" method="post">
+<form action="/register2" method="post" style=" display: grid; justify-items: right;">
 
-    <label for="firstName">First Name:</label>
-    <input type="text" name="firstName" id="firstName" required><br>
+    <div class="form-group" style="margin-bottom: -1rem !important; display: inline-flex;">
+   <div> <label for="firstName">First Name:</label> </div>
+    <div><input type="text" name="firstName" id="firstName" class="form-control" style="width: 100% !important;" required><br></div>
+    </div>
 
-    <label for="lastName">Last Name:</label>
-    <input type="text" name="lastName" id="lastName" required><br>
+    <div class="form-group" style="margin-bottom: -1rem !important; display: inline-flex;">
+        <div><label for="lastName">Last Name:</label></div>
+        <div><input type="text" name="lastName" id="lastName" class="form-control" style="width: 100% !important;"  required><br></div>
+    </div>
 
-    <label for="userName">User Name:</label>
-    <input type="text" name="userName" id="userName" required><br>
+    <div class="form-group" style="margin-bottom: -1rem !important; display: inline-flex;">
+        <div><label for="userName">User Name:</label></div>
+            <div><input type="text" name="userName" id="userName" class="form-control" style="width: 100% !important;"  required><br></div>
+    </div>
 
-    <label for="password">Password :</label>
-    <input type="password" name="password" id="password" required><br>
+    <div class="form-group" style="margin-bottom: -1rem !important; display: inline-flex;">
+        <div><label for="password">Password :</label></div>
+            <div><input type="password" name="password" id="password" class="form-control" style="width: 100% !important;"  required><br></div>
+    </div>
 
-    <label for="phone">Phone:</label>
-    <input type="text" name="phone" id="phone" required><br>
+    <div class="form-group" style="margin-bottom: -1rem !important; display: inline-flex;">
+        <div> <label for="phone">Phone:</label></div>
+            <div> <input type="text" name="phone" id="phone" class="form-control" style="width: 100% !important;"   required><br></div>
+    </div>
 
-    <label for="email">Email:</label>
-    <input type="email" name="email" id="email" required><br>
+    <div class="form-group" style="margin-bottom: -1rem !important; display: inline-flex;">
+        <div><label for="email">Email:</label></div>
+            <div><input type="email" name="email" id="email" class="form-control" style="width: 100% !important;"   required><br></div>
+    </div>
 
-    <label for="isMFAEnabled">Enable MFA:</label>
-    <input type="boolean" name="isMFAEnabled" id="isMFAEnabled" required><br>
+    <div class="form-group" style="margin-bottom: -1rem !important; display: inline-flex;">
+        <div> <label for="isMFAEnabled">Enable MFA:</label></div>
+            <div><input type="boolean" name="isMFAEnabled" id="isMFAEnabled" class="form-control"  style="width: 100% !important;"  required><br></div>
+    </div>
 
-    <label for="mfaType1">mfa Type1:</label>
-    <input type="text" name="mfaType1" id="mfaType1" required><br>
+    <div class="form-group" style="margin-bottom: -1rem !important; display: inline-flex;">
+        <div> <label for="mfaType1">mfa Type1:</label></div>
+            <div><input type="text" name="mfaType1" id="mfaType1" class="form-control" style="width: 100% !important;"  required><br></div>
+    </div>
 
-    <label for="mfaType2">Password:</label>
-    <input type="text" name="mfaType2" id="mfaType2" required><br>
+    <div class="form-group" style="margin-bottom: -1rem !important; display: inline-flex;">
+        <div> <label for="mfaType2">Password:</label></div>
+            <div> <input type="text" name="mfaType2" id="mfaType2" class="form-control"  style="width: 100% !important;"  required><br></div>
+    </div>
 
-    <button type="submit">Register</button>
+    <button type="submit" class="btn btn-primary">Register</button>
 </form>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+    .form-group {
+    margin-bottom: -1rem; !important
+}
+</script>
 </body>
 </html>
