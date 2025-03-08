@@ -1,17 +1,17 @@
 package com.example.bgbank.config;
 
-import org.springframework.context.annotation.Bean;
+/*import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.SecurityFilterChain;*/
 
-@Configuration
-@EnableWebSecurity
+//@Configuration
+//@EnableWebSecurity
 public class SecurityConfig {
 
-    @Bean
+   /* @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
         return httpSecurity
                 .formLogin(httpForm -> {
@@ -19,12 +19,13 @@ public class SecurityConfig {
                 })
                 .authorizeHttpRequests(authorizeRequests -> authorizeRequests.anyRequest()
                         .permitAll())
-                .csrf(AbstractHttpConfigurer::disable).build();
+                .build();
+             //   .csrf(AbstractHttpConfigurer::disable).build();
 
-        /* .authorizeHttpRequests(registry -> {
+        *//* .authorizeHttpRequests(registry -> {
                     registry.requestMatchers("/register").permitAll();
                     registry.anyRequest().permitAll();
                 })
-                .build();*/
-    }
+                .build();*//*
+    }*/
 }

@@ -47,11 +47,11 @@ public class UserController {
     }
 
     // Handle registration form submission
-    @PostMapping("/register")
+    @PostMapping("/register2")
     public String registerUser(User user) {
         System.out.println("Registering user.........");
         userService.saveUser(user);
-        return "redirect:/login";
+        return "redirect:/welcome";
     }
 
     // Login page
@@ -61,12 +61,32 @@ public class UserController {
         return "login";
     }
 
-    @PostMapping("/login")
-    public String checkUserLogin() {
-        System.out.println("Opening welcome page.........");
+    @PostMapping("/login2")
+    public String checkUserLogin(User user) {
+        System.out.println("user.getUserName()........"+user.getUserName());
+        System.out.println("user.getPassword()........"+user.getPassword());
+
         System.out.println("Check user credentials.........");
 
-        return "redirect:/welcome";
+        User user1 = userService.findUser(user.getUserName(),user.getPassword());
+
+        if(user1!=null){
+            System.out.println("Opening welcome page.........");
+
+            return "redirect:/welcome";
+        } else {
+            System.out.println("Bad credentials.........");
+            return "redirect:/login";
+        }
+
+
+
+    }
+
+    @GetMapping("/welcome")
+    public String showWelcomeage() {
+        System.out.println("Opening welcome page.........");
+        return "welcome";
     }
 
 }

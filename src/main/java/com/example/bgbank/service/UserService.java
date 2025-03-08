@@ -17,18 +17,23 @@ public class UserService {
     // Create or Update User
     public User saveUser(User user) {
         User newUser  = user;
-        newUser.setPassword(UserUtil.encrypt(user.getPassword()));
+        //newUser.setPassword(UserUtil.encrypt(user.getPassword()));
         return userRepo.save(newUser);
     }
 
 
     public User findUser(String userName,String password) {
-       String passsword =   UserUtil.encrypt(password);
-       User user =  userRepo.findByUserName(userName);
-       if(user.getPassword().equals(passsword)){
-           return user;
-       }
-       return null;
+       //String passsword =   UserUtil.encrypt(password);
+        try {
+            User user =  userRepo.findByUserName(userName);
+            if(user.getPassword().equals(password)){
+                return user;
+            }
+            return null;
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+return null;
     }
 
     public List<User> findAllUser() {
