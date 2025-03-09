@@ -81,7 +81,6 @@ public class UserController {
         return "welcome";
     }
 
-
     @GetMapping("/mfa/{id}")
     public ModelAndView showMfaPage(@PathVariable("id") String id) {
         System.out.println("Opening MFA page for User ID: " + id);

@@ -20,7 +20,7 @@ public class UserService {
         //newUser.setPassword(UserUtil.encrypt(user.getPassword()));
         int max = 9999, min = 1000;
         newUser.setCustRegNumber(StringUtils.substring(user.getFirstName(), 0, 1)
-                + "" + StringUtils.substring(user.getLastName(), 0, 6)
+                + "" + StringUtils.substring(user.getLastName(), 0, 3)
                 + ":" + min + (int) (Math.random() * ((max - min) + 1)));
         return userRepo.save(newUser);
     }
