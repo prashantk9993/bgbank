@@ -1,0 +1,70 @@
+<!-- MFA Authentication Page (mfa.html) -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>MFA Authentication</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+    <style>
+        .form-control {
+            background-color: #e3f2fd;
+        }
+        #qrCodeContainer {
+            display: none;
+        }
+    </style>
+</head>
+<body class="container mt-5">
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <h2 class="text-center mb-4">MFA Authentication & Device Registration</h2>
+        <form action="/setupMFA" method="post" class="p-4 border rounded shadow-sm bg-light">
+            <div class="mb-3">
+                <label for="userId" class="form-label">User ID</label>
+                <input type="text" class="form-control" name="userId" id="userId" th:value="${UserId}" readonly>
+            </div>
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" name="isMFAEnabled" id="isMFAEnabled" onclick="toggleQRCode()">
+                <label for="isMFAEnabled" class="form-check-label">Enable MFA</label>
+            </div>
+            <div class="mb-3">
+                <label for="deviceName" class="form-label">Device Name</label>
+                <input type="text" class="form-control" name="deviceName" id="deviceName" required>
+            </div>
+            <div class="mb-3">
+                <label for="mfaType" class="form-label">MFA Type</label>
+                <select class="form-control" name="mfaType" id="mfaType" required>
+                    <option value="totp">Time-based OTP</option>
+                    <option value="sms">SMS OTP</option>
+                </select>
+            </div>
+            <div id="qrCodeContainer" class="text-center mt-3">
+                <label class="form-label">Scan this QR Code to Register Your Device</label>
+                <canvas id="qrCode"></canvas>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Register MFA</button>
+        </form>
+    </div>
+</div>
+<script>
+        function toggleQRCode() {
+            const qrCodeContainer = document.getElementById('qrCodeContainer');
+            const isMFAEnabled = document.getElementById('isMFAEnabled').checked;
+            qrCodeContainer.style.display = isMFAEnabled ? 'block' : 'none';
+            if (isMFAEnabled) {
+                generateQRCode();
+            }
+        }
+
+       function generateQRCode() {
+            const userId = document.getElementById('userId').value || 'defaultUser';
+            const qr = new QRious({
+                element: document.getElementById('qrCode'),
+                value: `https://localhost:8080/user/device/registration/?id=${userId}`,
+                size: 200
+            });
+        }
+    </script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

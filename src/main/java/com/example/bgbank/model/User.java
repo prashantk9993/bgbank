@@ -30,6 +30,8 @@ public class User {
 
     private String email;
 
+    private String custRegNumber;
+
     private boolean isMFAEnabled;
 
     private String mfaType1;
